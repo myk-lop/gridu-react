@@ -1,7 +1,17 @@
 import React from "react";
+import AuthWrapper from "../../common/components/AuthWrapper/AuthWrapper";
+import { URLS } from "../../common/constants";
 
-const SignUpPage = () => {
-  return <div>Sign Up Page</div>;
+const LoginPage = () => {
+  return (
+    <>
+      <AuthWrapper
+        title="Sign up"
+        message="Already have an account??"
+        link={{ url: URLS.LOGIN, text: "Log in" }}
+      ></AuthWrapper>
+    </>
+  );
 };
 
-export default SignUpPage;
+export default LoginPage;

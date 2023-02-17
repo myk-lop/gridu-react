@@ -1,3 +1,11 @@
+:root {
+  --dark: #181823;
+  --main-color: #537fe7;
+  --secondary-color: #c0eef2;
+  --light-color: #e9f8f9;
+  --danger: #e90064;
+}
+
 * {
   box-sizing: border-box;
 }
@@ -9,6 +17,7 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  color: var(--dark);
 }
 
 code {

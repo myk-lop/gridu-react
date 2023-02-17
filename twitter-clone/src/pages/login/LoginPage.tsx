@@ -1,15 +1,20 @@
 import React from "react";
 import AuthWrapper from "../../common/components/AuthWrapper/AuthWrapper";
 import { URLS } from "../../common/constants";
+import LoginForm from "./LoginForm";
 
 const LoginPage = () => {
+  const handleChange = () => {};
+
   return (
     <>
       <AuthWrapper
         title="Log in"
         message="Don't have an account?"
         link={{ url: URLS.SIGN_UP, text: "Sign up" }}
-      ></AuthWrapper>
+      >
+        <LoginForm></LoginForm>
+      </AuthWrapper>
     </>
   );
 };

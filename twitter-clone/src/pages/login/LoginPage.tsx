@@ -4,8 +4,6 @@ import { URLS } from "../../common/constants";
 import LoginForm from "./LoginForm";
 
 const LoginPage = () => {
-  const handleChange = () => {};
-
   return (
     <>
       <AuthWrapper

@@ -2,7 +2,7 @@ import React from "react";
 import AuthWrapper from "../../common/components/AuthWrapper/AuthWrapper";
 import { URLS } from "../../common/constants";
 
-const LoginPage = () => {
+const SignUpPage = () => {
   return (
     <>
       <AuthWrapper
@@ -14,4 +14,4 @@ const LoginPage = () => {
   );
 };
 
-export default LoginPage;
+export default SignUpPage;

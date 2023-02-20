@@ -5,14 +5,36 @@ import LoginPage from "./pages/login/LoginPage";
 import SignUpPage from "./pages/signup/SignUpPage";
 import PageNotFound from "./pages/PageNotFound";
 import { URLS } from "./common/constants";
+import RequireAuth from "./common/RequireAuth";
 
 function App() {
   return (
     <Routes>
-      <Route path={URLS.HOME} element={<HomePage />} />
-      <Route path={URLS.LOGIN} element={<LoginPage />} />
-      <Route path={URLS.SIGN_UP} element={<SignUpPage />} />
-      <Route element={PageNotFound} />
+      <Route
+        path={URLS.HOME}
+        element={
+          <RequireAuth requireAuth={true}>
+            <HomePage />
+          </RequireAuth>
+        }
+      />
+      <Route
+        path={URLS.LOGIN}
+        element={
+          <RequireAuth requireAuth={false}>
+            <LoginPage />
+          </RequireAuth>
+        }
+      />
+      <Route
+        path={URLS.SIGN_UP}
+        element={
+          <RequireAuth requireAuth={false}>
+            <SignUpPage />
+          </RequireAuth>
+        }
+      />
+      <Route path="*" element={<PageNotFound />} />
     </Routes>
   );
 }

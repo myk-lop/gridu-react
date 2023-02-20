@@ -1,46 +1,74 @@
-import React from "react";
+import React, { useState } from "react";
 import { Formik, Form } from "formik";
 import * as Yup from "yup";
 import TextInput from "../../common/components/TextInput/TextInput";
 import Button from "../../common/components/Button/Button";
+import axios from "axios";
+import { API_URLS, URLS } from "../../common/constants";
+import { useDispatch } from "react-redux";
+import { defineUser } from "../../redux/reducers/userSlice";
+import FormError from "../../common/components/FormError/FormError";
+import { useNavigate } from "react-router-dom";
 
 interface LoginFormValues {
-  email: string;
+  username: string;
   password: string;
 }
 
 const initialValues = {
-  email: "",
+  username: "",
   password: "",
 };
 
 const validationSchema = Yup.object({
-  email: Yup.string().email("Invalid email address").required("Required"),
+  username: Yup.string().required("Required"),
   password: Yup.string()
     .max(256, "Must be less than 256 characters")
     .min(8, "Must be 8 or more characters")
     .required("Required"),
 });
 
-const sleep = (ms: number) => new Promise((r) => setTimeout(r, ms));
-
 const LoginForm = () => {
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+  const [formError, setFormError] = useState("");
+
+  const handleLogin = async ({ username, password }: LoginFormValues) => {
+    await axios
+      .get(`${API_URLS.USERS}${username}`)
+      .then((response) => {
+        const user = {
+          id: response.data.id,
+          name: response.data.name,
+          isAuthenticated: true,
+        };
+        dispatch(defineUser(user));
+        navigate(URLS.HOME, { replace: true });
+      })
+      .catch((error) => {
+        if (error.response.status === 404) {
+          setFormError("Invalid email or password");
+        } else {
+          setFormError("Something went wrong");
+        }
+      });
+  };
+
   return (
     <Formik
       initialValues={initialValues}
       validationSchema={validationSchema}
-      onSubmit={async (values: LoginFormValues) => {
-        await sleep(500);
-        alert(JSON.stringify(values, null, 2));
+      onSubmit={async ({ username, password }: LoginFormValues) => {
+        await handleLogin({ username, password });
       }}
     >
       {({ isSubmitting }) => (
         <Form>
           <TextInput
-            label="Email"
-            name="email"
-            type="email"
-            placeholder="Email"
+            label="Username"
+            name="username"
+            type="text"
+            placeholder="Username"
           />
           <TextInput
             label="Password"
@@ -52,6 +80,8 @@ const LoginForm = () => {
           <Button type="submit" disabled={isSubmitting}>
             Log In
           </Button>
+
+          {formError && <FormError message={formError} />}
         </Form>
       )}
     </Formik>

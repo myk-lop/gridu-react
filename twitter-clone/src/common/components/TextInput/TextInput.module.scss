@@ -12,7 +12,7 @@
 
   &Errored {
     .textInput {
-      border-color: var(--danger);
+      border-color: var(--danger-color);
     }
   }
 
@@ -27,7 +27,7 @@
   }
 
   .error {
-    color: var(--danger);
+    color: var(--danger-color);
     font-size: 1em;
     margin-top: 3px;
   }

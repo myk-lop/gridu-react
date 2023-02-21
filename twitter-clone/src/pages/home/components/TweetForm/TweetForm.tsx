@@ -10,7 +10,6 @@ import styles from "./TweetForm.module.scss";
 import { ITweet } from "../../../../common/interfaces";
 import { API_URLS } from "../../../../common/constants";
 import { useDispatch } from "react-redux";
-import { FetchTweets } from "../../../../common/utils/FetchTweets";
 import { setTweets } from "../../../../redux/reducers/tweetsSlice";
 
 const initialValues: ITweet = {

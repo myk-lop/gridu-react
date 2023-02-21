@@ -5,7 +5,7 @@ import LoginPage from "./pages/login/LoginPage";
 import SignUpPage from "./pages/signup/SignUpPage";
 import PageNotFound from "./pages/PageNotFound";
 import { URLS } from "./common/constants";
-import RequireAuth from "./common/RequireAuth";
+import RequireAuth from "./common/utils/RequireAuth";
 
 function App() {
   return (

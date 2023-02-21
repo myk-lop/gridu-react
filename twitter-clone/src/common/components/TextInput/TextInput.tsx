@@ -8,6 +8,7 @@ const TextInput = ({ label, ...props }: any): JSX.Element => {
   // message if the field is invalid and it has been touched (i.e. visited)
   const [field, meta] = useField(props);
   const hasError = meta.touched && meta.error;
+  const { type } = props;
 
   return (
     <div
@@ -16,7 +17,11 @@ const TextInput = ({ label, ...props }: any): JSX.Element => {
       }`}
     >
       <label htmlFor={props.id || props.name}>{label}</label>
-      <input className={styles.textInput} {...field} {...props} />
+      {type === "textarea" ? (
+        <textarea className={styles.textInput} {...field} {...props} />
+      ) : (
+        <input className={styles.textInput} {...field} {...props} />
+      )}
       {hasError ? <div className={styles.error}>{meta.error}</div> : null}
     </div>
   );

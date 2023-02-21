@@ -1,5 +1,5 @@
 import { configureStore } from "@reduxjs/toolkit";
-// import tweetsReducer from "./reducers/tweetsReducer";
+import tweetsReducer from "./reducers/tweetsSlice";
 import userReducer from "./reducers/userSlice";
 import { LOCAL_STORAGE_KEYS } from "../common/constants";
 import { defineUser } from "./reducers/userSlice";
@@ -18,7 +18,7 @@ const userMiddleware = (store: any) => (next: any) => (action: any) => {
 
 export const store = configureStore({
   reducer: {
-    // tweets: tweetsReducer,
+    tweets: tweetsReducer,
     user: userReducer,
   },
   middleware: (getDefaultMiddleware) =>

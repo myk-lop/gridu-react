@@ -1,7 +1,7 @@
 import React from "react";
 import { Navigate, useLocation } from "react-router-dom";
 import { useSelector } from "react-redux";
-import { URLS } from "./constants";
+import { URLS } from "../constants";
 
 function RequireAuth({
   children,
@@ -12,9 +12,8 @@ function RequireAuth({
 }) {
   const user = useSelector((state: any) => state.user);
   const { pathname: currentPathname } = useLocation();
-  const redirectToLogin = requireAuth && (!user || !user.isAuthenticated);
-  const redirectToHome =
-    currentPathname !== URLS.HOME && user && user.isAuthenticated;
+  const redirectToLogin = requireAuth && (!user || !user.id);
+  const redirectToHome = currentPathname !== URLS.HOME && user && user.id;
 
   if (redirectToLogin) {
     return <Navigate to={URLS.LOGIN} replace />;

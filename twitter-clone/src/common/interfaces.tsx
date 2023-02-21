@@ -1,5 +1,11 @@
 export interface IUser {
   id: string;
-  name: string;
-  isAuthenticated: boolean;
+  fullName: "";
+  email: "";
+}
+
+export interface ITweet {
+  id?: string;
+  author_id: string;
+  text: string;
 }

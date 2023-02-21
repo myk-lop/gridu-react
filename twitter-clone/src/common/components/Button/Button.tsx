@@ -6,6 +6,7 @@ interface Props {
   onClick?: () => void;
   type?: "button" | "submit";
   disabled?: boolean;
+  additionalStyles?: {};
 }
 
 const Button: React.FC<Props> = ({
@@ -13,10 +14,12 @@ const Button: React.FC<Props> = ({
   onClick,
   children,
   disabled = false,
+  additionalStyles = {},
 }) => {
   return (
     <button
       className={styles.btn}
+      style={additionalStyles}
       type={type}
       onClick={onClick}
       disabled={disabled}

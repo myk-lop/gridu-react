@@ -10,18 +10,21 @@ import { defineUser } from "../../redux/reducers/userSlice";
 import FormError from "../../common/components/FormError/FormError";
 import { useNavigate } from "react-router-dom";
 
-interface LoginFormValues {
+interface ILoginFormValues {
   username: string;
   password: string;
 }
 
-const initialValues = {
+const initialValues: ILoginFormValues = {
   username: "",
   password: "",
 };
 
 const validationSchema = Yup.object({
-  username: Yup.string().required("Required"),
+  username: Yup.string()
+    .max(36, "Must be less than 36 characters")
+    .min(2, "Must be 2 or more characters")
+    .required("Required"),
   password: Yup.string()
     .max(256, "Must be less than 256 characters")
     .min(8, "Must be 8 or more characters")
@@ -33,14 +36,19 @@ const LoginForm = () => {
   const navigate = useNavigate();
   const [formError, setFormError] = useState("");
 
-  const handleLogin = async ({ username, password }: LoginFormValues) => {
+  const handleLogin = async ({ username, password }: ILoginFormValues) => {
     await axios
       .get(`${API_URLS.USERS}${username}`)
       .then((response) => {
+        if (password !== response.data.password) {
+          setFormError("Invalid password");
+          return;
+        }
+
         const user = {
           id: response.data.id,
-          name: response.data.name,
-          isAuthenticated: true,
+          fullName: response.data.fullName,
+          email: response.data.email,
         };
         dispatch(defineUser(user));
         navigate(URLS.HOME, { replace: true });
@@ -58,7 +66,7 @@ const LoginForm = () => {
     <Formik
       initialValues={initialValues}
       validationSchema={validationSchema}
-      onSubmit={async ({ username, password }: LoginFormValues) => {
+      onSubmit={async ({ username, password }: ILoginFormValues) => {
         await handleLogin({ username, password });
       }}
     >

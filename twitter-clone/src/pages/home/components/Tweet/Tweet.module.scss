@@ -1,0 +1,16 @@
+.tweet {
+  border: 1px solid var(--secondary-color);
+  padding: 20px;
+  margin-bottom: 30px;
+  border-radius: 4px;
+}
+
+.author {
+  font-weight: 600;
+  padding: 0 15px 10px 0;
+  text-decoration: underline;
+}
+
+.tweetText {
+  padding-left: 20px;
+}

@@ -3,8 +3,8 @@ import { IUser } from "../../common/interfaces";
 
 const initialState: IUser = {
   id: "",
-  name: "",
-  isAuthenticated: false,
+  fullName: "",
+  email: "",
 };
 
 const userSlice = createSlice({
@@ -12,8 +12,6 @@ const userSlice = createSlice({
   initialState,
   reducers: {
     defineUser(state, action) {
-      console.log("defineUser CALLLLL!!!");
-
       state = action.payload;
       return state;
     },

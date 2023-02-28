@@ -5,10 +5,10 @@ import TextInput from "../../common/components/TextInput/TextInput";
 import Button from "../../common/components/Button/Button";
 import axios from "axios";
 import { API_URLS, URLS } from "../../common/constants";
-import { useDispatch } from "react-redux";
+import { useDispatch } from "react-redux"; // TODO: absolute imports should be on top of the file. Move this import to the top of the file.
 import { defineUser } from "../../redux/reducers/userSlice";
 import FormError from "../../common/components/FormError/FormError";
-import { useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom"; // TODO: absolute imports should be on top of the file. Move this import to the top of the file.
 
 interface ILoginFormValues {
   username: string;

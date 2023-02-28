@@ -2,7 +2,7 @@ import React from "react";
 import { Link } from "react-router-dom";
 import styles from "./AuthWrapper.module.scss";
 
-type Props = {
+type Props = { // TODO: Rename this type to something more descriptive
   title: string;
   link: {
     url: string;

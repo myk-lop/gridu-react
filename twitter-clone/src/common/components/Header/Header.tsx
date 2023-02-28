@@ -1,10 +1,10 @@
 import React from "react";
 import styles from "./Header.module.scss";
 import Button from "../Button/Button";
-import { useDispatch } from "react-redux";
+import { useDispatch } from "react-redux"; // TODO: absolute imports should be on top of relative imports
 import { removeUser } from "../../../redux/reducers/userSlice";
 
-const buttonStyles = {
+const buttonStyles = { // TODO: move styles to a separate SCSS file
   backgroundColor: "#fff",
   color: "var(--main-color)",
   padding: "5px 10px",

@@ -5,7 +5,7 @@ import TweetForm from "./components/TweetForm/TweetForm";
 import TweetsList from "./components/TweetsList";
 import { FetchTweets } from "../../common/utils/FetchTweets";
 
-const containerStyles = {
+const containerStyles = { // TODO: move this to a separate SCSS file to keep code consistent
   padding: "70px 15px",
   maxWidth: "800px",
   width: "auto",
@@ -13,8 +13,10 @@ const containerStyles = {
 };
 
 const HomePage = () => {
-  const user = useSelector((state: any) => state.user);
-  FetchTweets();
+  const user = useSelector((state: any) => state.user); // TODO: provide better typing
+  FetchTweets(); // TODO: fetch should be called before rendering the component
+    // TODO: fetch should be called only once, not on every render
+    // TODO: functions names should start with lowercase letter
 
   return (
     <>

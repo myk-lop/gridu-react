@@ -11,7 +11,7 @@ const userSlice = createSlice({
   name: "user",
   initialState,
   reducers: {
-    defineUser(state, action) {
+    defineUser(state, action) { // TODO: keep the code consistent, by either making both methods arrow functions or both methods regular functions
       state = action.payload;
       return state;
     },

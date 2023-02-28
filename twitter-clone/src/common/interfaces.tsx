@@ -1,7 +1,7 @@
 export interface IUser {
   id: string;
-  fullName: "";
-  email: "";
+  fullName: ""; // TODO: provide a type for this string
+  email: ""; // TODO: provide a type for this string
 }
 
 export interface ITweet {

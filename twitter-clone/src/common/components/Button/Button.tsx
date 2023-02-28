@@ -1,12 +1,12 @@
 import React from "react";
 import styles from "./Button.module.scss";
 
-interface Props {
+interface Props { // TODO: rename typing to be more specific
   children?: React.ReactNode;
   onClick?: () => void;
   type?: "button" | "submit";
   disabled?: boolean;
-  additionalStyles?: {};
+  additionalStyles?: {}; // TODO: we can get rid of this property
 }
 
 const Button: React.FC<Props> = ({

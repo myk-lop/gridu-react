@@ -13,7 +13,7 @@ function App() {
       <Route
         path={URLS.HOME}
         element={
-          <RequireAuth requireAuth={true}>
+          <RequireAuth requireAuth={true}> // TODO: if you're passing a true value, you can do it like this: <RequireAuth requireAuth>, it will automatically evaluate to true
             <HomePage />
           </RequireAuth>
         }
@@ -21,7 +21,7 @@ function App() {
       <Route
         path={URLS.LOGIN}
         element={
-          <RequireAuth requireAuth={false}>
+          <RequireAuth requireAuth={false}> // TODO: we can have the situation, when we have 1000 routes, and we need to pass the same prop to all of them. It's not a good idea to do it manually. We can set the default value in the component, so whenever we're NOT passing this prop, it will be set to false by default. So, we can do it like this: <RequireAuth>
             <LoginPage />
           </RequireAuth>
         }

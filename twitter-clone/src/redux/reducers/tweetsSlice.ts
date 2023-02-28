@@ -7,7 +7,7 @@ const tweetsSlice = createSlice({
   name: "tweets",
   initialState,
   reducers: {
-    setTweets(state, action) {
+    setTweets(state, action) { // TODO: keep the code consistent, by either making both methods arrow functions or both methods regular functions
       state = action.payload;
       return state;
     },

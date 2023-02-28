@@ -2,7 +2,7 @@ import React from "react";
 import DOMPurify from "isomorphic-dompurify";
 import styles from "./Tweet.module.scss";
 
-const Tweet = ({ tweet }: any) => {
+const Tweet = ({ tweet }: any) => { // TODO: provide better typing
   const cleanHtml = DOMPurify.sanitize(tweet.text);
 
   return (
@@ -11,7 +11,7 @@ const Tweet = ({ tweet }: any) => {
       <p
         className={styles.tweetText}
         dangerouslySetInnerHTML={{ __html: cleanHtml }}
-      ></p>
+      ></p> // TODO: can be a self-closing tag
     </li>
   );
 };

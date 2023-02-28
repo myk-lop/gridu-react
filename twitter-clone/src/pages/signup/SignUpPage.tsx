@@ -12,6 +12,7 @@ const SignUpPage = () => {
         link={{ url: URLS.LOGIN, text: "Log in" }}
       >
         <SignUpForm></SignUpForm>
+      {/* TODO: components that don't expect any children, should be self-closing tags. Like this: <SignUpForm /> */}
       </AuthWrapper>
     </>
   );

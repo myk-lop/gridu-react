@@ -4,7 +4,7 @@ import * as Yup from "yup";
 import FormError from "../../../../common/components/FormError/FormError";
 import TextInput from "../../../../common/components/TextInput/TextInput";
 import Button from "../../../../common/components/Button/Button";
-import axios from "axios";
+import axios from "axios"; // TODO: absolute imports should be on top of the file. Move this import to the top of the file.
 import DOMPurify from "isomorphic-dompurify";
 import styles from "./TweetForm.module.scss";
 import { ITweet } from "../../../../common/interfaces";
@@ -28,7 +28,7 @@ const TweetForm = ({ userId }: any) => {
   const [formError, setFormError] = useState("");
   const dispatch = useDispatch();
 
-  const submitTweet = ({ text: message }: ITweet, actions: any) => {
+  const submitTweet = ({ text: message }: ITweet, actions: any) => { // TODO: this function should be marked as async
     const text = DOMPurify.sanitize(message);
     const author_id = userId;
 
@@ -63,12 +63,12 @@ const TweetForm = ({ userId }: any) => {
       <Formik
         initialValues={initialValues}
         validationSchema={validationSchema}
-        onSubmit={(values, actions) => {
+        onSubmit={(values, actions) => { // TODO: don't use inline functions. Instead, create a function and pass it as a reference.
           submitTweet(values, actions);
         }}
       >
         {({ isSubmitting }) => (
-          <Form>
+          <Form> // Question: do we need to have a Form inside a Form?
             <TextInput
               name="text"
               type="textarea"

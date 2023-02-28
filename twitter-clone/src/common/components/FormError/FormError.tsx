@@ -1,6 +1,6 @@
 import styles from "./FormError.module.scss";
 
-type Props = {
+type Props = { // TODO: Rename typing to be more specific. For example, FormErrorProps
   message: string;
 };
 

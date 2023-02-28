@@ -6,7 +6,7 @@ import TextInput from "../../common/components/TextInput/TextInput";
 import Button from "../../common/components/Button/Button";
 import FormError from "../../common/components/FormError/FormError";
 import { API_URLS, URLS } from "../../common/constants";
-import { useDispatch } from "react-redux";
+import { useDispatch } from "react-redux"; // TODO: absolute imports should be on top of the file. Move this import to the top of the file.
 import { useNavigate } from "react-router-dom";
 import { defineUser } from "../../redux/reducers/userSlice";
 
@@ -55,7 +55,7 @@ const SignUpForm = () => {
         password,
         fullName,
       })
-      .then((response) => {
+      .then((response) => { // TODO: for now we're expecting type AxiosResponse<any>, which is not correct. We should expect AxiosResponse<IUser> or something like that.
         const user = {
           id: response.data.id,
           fullName: response.data.fullName,
@@ -73,7 +73,7 @@ const SignUpForm = () => {
     <Formik
       initialValues={initialValues}
       validationSchema={validationSchema}
-      onSubmit={async (values: ISignUpFormValues) => {
+      onSubmit={async (values: ISignUpFormValues) => { // TODO: don't use inline functions. Instead, create a function and pass it as a reference.
         await handleSignUp(values);
       }}
     >

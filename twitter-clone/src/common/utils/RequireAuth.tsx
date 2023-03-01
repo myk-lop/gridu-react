@@ -2,18 +2,19 @@ import React from "react";
 import { Navigate, useLocation } from "react-router-dom";
 import { useSelector } from "react-redux";
 import { URLS } from "../constants";
+import { RootState } from "../../redux/configureStore";
 
-function RequireAuth({
-  children,
-  requireAuth = true,
-}: {
-  children: JSX.Element;
+type RequireAuthProps = {
+  children: JSX.Element | JSX.Element[];
   requireAuth?: boolean;
-}) {
-  const user = useSelector((state: any) => state.user);
+};
+
+const RequireAuth = ({ children, requireAuth = false }: RequireAuthProps) => {
+  const user = useSelector((state: RootState) => state.user);
   const { pathname: currentPathname } = useLocation();
-  const redirectToLogin = requireAuth && (!user || !user.id);
-  const redirectToHome = currentPathname !== URLS.HOME && user && user.id;
+  const isLoggedIn = user && user.id;
+  const redirectToLogin = requireAuth && !isLoggedIn;
+  const redirectToHome = currentPathname !== URLS.HOME && isLoggedIn;
 
   if (redirectToLogin) {
     return <Navigate to={URLS.LOGIN} replace />;
@@ -22,7 +23,7 @@ function RequireAuth({
     return <Navigate to={URLS.HOME} replace />;
   }
 
-  return children;
-}
+  return <>{children}</>;
+};
 
 export default RequireAuth;

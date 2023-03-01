@@ -1,15 +1,15 @@
 import React, { useState } from "react";
 import { Formik, Form } from "formik";
+import { useDispatch } from "react-redux";
 import * as Yup from "yup";
+import axios from "axios";
+import DOMPurify from "isomorphic-dompurify";
 import FormError from "../../../../common/components/FormError/FormError";
 import TextInput from "../../../../common/components/TextInput/TextInput";
 import Button from "../../../../common/components/Button/Button";
-import axios from "axios";
-import DOMPurify from "isomorphic-dompurify";
 import styles from "./TweetForm.module.scss";
 import { ITweet } from "../../../../common/interfaces";
 import { API_URLS } from "../../../../common/constants";
-import { useDispatch } from "react-redux";
 import { setTweets } from "../../../../redux/reducers/tweetsSlice";
 
 const initialValues: ITweet = {
@@ -28,7 +28,10 @@ const TweetForm = ({ userId }: any) => {
   const [formError, setFormError] = useState("");
   const dispatch = useDispatch();
 
-  const submitTweet = ({ text: message }: ITweet, actions: any) => {
+  const submitTweetHandler = async (
+    { text: message }: ITweet,
+    actions: any
+  ) => {
     const text = DOMPurify.sanitize(message);
     const author_id = userId;
 
@@ -63,22 +66,19 @@ const TweetForm = ({ userId }: any) => {
       <Formik
         initialValues={initialValues}
         validationSchema={validationSchema}
-        onSubmit={(values, actions) => {
-          submitTweet(values, actions);
-        }}
+        onSubmit={submitTweetHandler}
       >
         {({ isSubmitting }) => (
           <Form>
+            {/* Question: do we need to have a Form inside a Form? - That's how it's shown in Formic docs example, maybe I'm missing something */}
             <TextInput
               name="text"
               type="textarea"
               placeholder="What's happening?"
             />
-
             <Button type="submit" disabled={isSubmitting}>
               Tweet
             </Button>
-
             {formError && <FormError message={formError} />}
           </Form>
         )}

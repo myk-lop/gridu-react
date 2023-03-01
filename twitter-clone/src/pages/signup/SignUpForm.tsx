@@ -1,14 +1,15 @@
 import React, { useState } from "react";
 import { Formik, Form } from "formik";
 import * as Yup from "yup";
-import axios from "axios";
+import axios, { AxiosResponse } from "axios";
+import { useDispatch } from "react-redux";
+import { useNavigate } from "react-router-dom";
 import TextInput from "../../common/components/TextInput/TextInput";
 import Button from "../../common/components/Button/Button";
 import FormError from "../../common/components/FormError/FormError";
 import { API_URLS, URLS } from "../../common/constants";
-import { useDispatch } from "react-redux";
-import { useNavigate } from "react-router-dom";
 import { defineUser } from "../../redux/reducers/userSlice";
+import { IUser } from "../../common/interfaces";
 
 interface ISignUpFormValues {
   email: string;
@@ -55,7 +56,7 @@ const SignUpForm = () => {
         password,
         fullName,
       })
-      .then((response) => {
+      .then((response: AxiosResponse<IUser>) => {
         const user = {
           id: response.data.id,
           fullName: response.data.fullName,
@@ -73,9 +74,7 @@ const SignUpForm = () => {
     <Formik
       initialValues={initialValues}
       validationSchema={validationSchema}
-      onSubmit={async (values: ISignUpFormValues) => {
-        await handleSignUp(values);
-      }}
+      onSubmit={handleSignUp}
     >
       {({ isSubmitting }) => (
         <Form>

@@ -1,10 +1,10 @@
 import styles from "./FormError.module.scss";
 
-type Props = {
+type FormErrorProps = {
   message: string;
 };
 
-const FormError = ({ message }: Props) => {
+const FormError = ({ message }: FormErrorProps) => {
   return <div className={styles.error}>{message}</div>;
 };
 

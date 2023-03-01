@@ -13,7 +13,7 @@ function App() {
       <Route
         path={URLS.HOME}
         element={
-          <RequireAuth requireAuth={true}>
+          <RequireAuth requireAuth>
             <HomePage />
           </RequireAuth>
         }
@@ -21,7 +21,7 @@ function App() {
       <Route
         path={URLS.LOGIN}
         element={
-          <RequireAuth requireAuth={false}>
+          <RequireAuth>
             <LoginPage />
           </RequireAuth>
         }
@@ -29,7 +29,7 @@ function App() {
       <Route
         path={URLS.SIGN_UP}
         element={
-          <RequireAuth requireAuth={false}>
+          <RequireAuth>
             <SignUpPage />
           </RequireAuth>
         }

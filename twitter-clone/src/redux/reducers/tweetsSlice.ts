@@ -1,4 +1,4 @@
-import { createSlice } from "@reduxjs/toolkit";
+import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { ITweet } from "../../common/interfaces";
 
 const initialState: ITweet[] = [];
@@ -7,7 +7,7 @@ const tweetsSlice = createSlice({
   name: "tweets",
   initialState,
   reducers: {
-    setTweets(state, action) {
+    setTweets: (state, action: PayloadAction<ITweet[]>) => {
       state = action.payload;
       return state;
     },

@@ -1,25 +1,24 @@
 import React from "react";
 import styles from "./Button.module.scss";
 
-interface Props {
+interface ButtonProps {
   children?: React.ReactNode;
   onClick?: () => void;
   type?: "button" | "submit";
   disabled?: boolean;
-  additionalStyles?: {};
+  styleType?: "primary" | "secondary";
 }
 
-const Button: React.FC<Props> = ({
+const Button: React.FC<ButtonProps> = ({
   type = "button",
   onClick,
   children,
   disabled = false,
-  additionalStyles = {},
+  styleType = "primary",
 }) => {
   return (
     <button
-      className={styles.btn}
-      style={additionalStyles}
+      className={`${styles.btn} ${styles[styleType]}`}
       type={type}
       onClick={onClick}
       disabled={disabled}

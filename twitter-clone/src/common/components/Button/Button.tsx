@@ -6,7 +6,7 @@ interface ButtonProps {
   onClick?: () => void;
   type?: "button" | "submit";
   disabled?: boolean;
-  styleType?: "primary" | "secondary";
+  variant?: "primary" | "secondary";
 }
 
 const Button: React.FC<ButtonProps> = ({
@@ -14,11 +14,11 @@ const Button: React.FC<ButtonProps> = ({
   onClick,
   children,
   disabled = false,
-  styleType = "primary",
+  variant = "primary",
 }) => {
   return (
     <button
-      className={`${styles.btn} ${styles[styleType]}`}
+      className={`${styles.btn} ${styles[variant]}`}
       type={type}
       onClick={onClick}
       disabled={disabled}

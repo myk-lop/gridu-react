@@ -14,7 +14,7 @@ const Header = ({ userName }: { userName: string }) => {
   return (
     <header className={styles.header}>
       <div className={styles.userName}>{userName}</div>
-      <Button onClick={logOut} styleType="secondary">
+      <Button onClick={logOut} variant="secondary">
         Log out
       </Button>
     </header>

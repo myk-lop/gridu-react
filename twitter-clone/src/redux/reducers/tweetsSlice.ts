@@ -7,7 +7,7 @@ const tweetsSlice = createSlice({
   name: "tweets",
   initialState,
   reducers: {
-    setTweets: (state, action: PayloadAction<ITweet[]>) => {
+    setTweets: (state: ITweet[], action: PayloadAction<ITweet[]>) => {
       state = action.payload;
       return state;
     },

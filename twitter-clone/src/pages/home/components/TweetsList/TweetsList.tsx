@@ -10,8 +10,8 @@ const TweetsList = () => {
 
   return (
     <ul className={styles.list}>
-      {tweets.map(({ id, text, author_id }: ITweet) => (
-        <Tweet key={id} author_id={author_id} text={text} />
+      {tweets.map(({ id, text, author_id: authorId }: ITweet) => (
+        <Tweet key={id} authorId={authorId} text={text} />
       ))}
     </ul>
   );

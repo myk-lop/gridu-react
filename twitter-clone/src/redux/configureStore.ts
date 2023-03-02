@@ -1,17 +1,16 @@
-import { configureStore } from "@reduxjs/toolkit";
+import { configureStore, Middleware } from "@reduxjs/toolkit";
 import tweetsReducer from "./reducers/tweetsSlice";
 import userReducer from "./reducers/userSlice";
 import { LOCAL_STORAGE_KEYS } from "../common/constants";
 import { defineUser } from "./reducers/userSlice";
 import { IUser } from "../common/interfaces";
 
-const userMiddleware = (store: any) => (next: any) => (action: any) => {
+const userMiddleware: Middleware = (store) => (next) => (action) => {
   const result = next(action);
 
-  if (action.type?.endsWith("User")) {
+  if (action.type === "user/defineUser" || action.type === "user/removeUser") {
     const user = store.getState().user;
     localStorage.setItem(LOCAL_STORAGE_KEYS.USER, JSON.stringify(user));
-    console.log("Set user", user);
   }
   return result;
 };

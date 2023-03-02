@@ -2,16 +2,21 @@ import React from "react";
 import DOMPurify from "isomorphic-dompurify";
 import styles from "./Tweet.module.scss";
 
-const Tweet = ({ tweet }: any) => {
-  const cleanHtml = DOMPurify.sanitize(tweet.text);
+type TweetProps = {
+  text: string;
+  authorId: string;
+};
+
+const Tweet = ({ text, authorId }: TweetProps) => {
+  const cleanHtml = DOMPurify.sanitize(text);
 
   return (
     <li className={styles.tweet}>
-      <div className={styles.author}>{tweet.author_id}</div>
+      <div className={styles.author}>{authorId}</div>
       <p
         className={styles.tweetText}
         dangerouslySetInnerHTML={{ __html: cleanHtml }}
-      ></p>
+      />
     </li>
   );
 };

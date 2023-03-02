@@ -2,7 +2,7 @@ import React from "react";
 import { Link } from "react-router-dom";
 import styles from "./AuthWrapper.module.scss";
 
-type Props = {
+type AuthWrapperProps = {
   title: string;
   link: {
     url: string;
@@ -12,7 +12,7 @@ type Props = {
   children?: JSX.Element | JSX.Element[];
 };
 
-const AuthWrapper = ({ children, message, link, title }: Props) => {
+const AuthWrapper = ({ children, message, link, title }: AuthWrapperProps) => {
   return (
     <div className={styles.authWrapper}>
       <div className={styles.authBox}>

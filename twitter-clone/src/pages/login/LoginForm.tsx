@@ -1,14 +1,14 @@
 import React, { useState } from "react";
 import { Formik, Form } from "formik";
 import * as Yup from "yup";
+import axios from "axios";
+import { useNavigate } from "react-router-dom";
+import { useDispatch } from "react-redux";
 import TextInput from "../../common/components/TextInput/TextInput";
 import Button from "../../common/components/Button/Button";
-import axios from "axios";
 import { API_URLS, URLS } from "../../common/constants";
-import { useDispatch } from "react-redux";
 import { defineUser } from "../../redux/reducers/userSlice";
 import FormError from "../../common/components/FormError/FormError";
-import { useNavigate } from "react-router-dom";
 
 interface ILoginFormValues {
   username: string;

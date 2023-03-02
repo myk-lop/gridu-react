@@ -11,7 +11,7 @@ const SignUpPage = () => {
         message="Already have an account??"
         link={{ url: URLS.LOGIN, text: "Log in" }}
       >
-        <SignUpForm></SignUpForm>
+        <SignUpForm />
       </AuthWrapper>
     </>
   );

@@ -1,14 +1,25 @@
 .btn {
-  padding: 10px 15px;
   border-radius: 4px;
+  text-transform: uppercase;
+  cursor: pointer;
+  padding: 10px 15px;
   font-size: 1rem;
   background-color: var(--main-color);
   color: #fff;
-  text-transform: uppercase;
-  cursor: pointer;
 
   &:disabled {
     pointer-events: none;
     background-color: lightgrey;
   }
+}
+
+.primary {
+  font-weight: 500;
+}
+
+.secondary {
+  background-color: #fff;
+  color: var(--main-color);
+  padding: 5px 10px;
+  font-size: 0.8rem;
 }

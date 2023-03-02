@@ -1,4 +1,4 @@
-import { createSlice } from "@reduxjs/toolkit";
+import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { IUser } from "../../common/interfaces";
 
 const initialState: IUser = {
@@ -11,7 +11,7 @@ const userSlice = createSlice({
   name: "user",
   initialState,
   reducers: {
-    defineUser(state, action) {
+    defineUser: (state: IUser, action: PayloadAction<IUser>) => {
       state = action.payload;
       return state;
     },
